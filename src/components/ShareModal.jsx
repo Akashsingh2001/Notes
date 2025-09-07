@@ -1,7 +1,10 @@
 import React from 'react';
 
+
+const backendURL = "https://quicknotes-production.up.railway.app"; 
+
 function ShareModal({ note, onClose }) {
-  const shareLink = `${window.location.origin}/notes/share/${note.shareURL}`;
+  const shareLink = `${backendURL}/notes/share/${note.shareURL}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shareLink);

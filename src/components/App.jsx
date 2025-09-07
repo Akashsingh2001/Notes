@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateNote from './CreateNote';
 import NoteList from './NoteList';
+import SharedNotePage from './SharedNotePage';
 
-const backendURL = "https://quicknotes-production.up.railway.app"; 
+const backendURL = "https://quicknotes-production.up.railway.app";
 
-function App() {
+function Home() {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -65,6 +67,17 @@ function App() {
         onDelete={handleDelete}
       />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/notes/share/:shareURL" element={<SharedNotePage />} />
+      </Routes>
+    </Router>
   );
 }
 
